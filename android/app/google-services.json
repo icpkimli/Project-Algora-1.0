@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "134062353382",
+    "project_id": "algora-df37e",
+    "storage_bucket": "algora-df37e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134062353382:android:278a16d476e3c27a620427",
+        "android_client_info": {
+          "package_name": "com.example.project_algora_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134062353382-ihd0m1jn89mmvb9538lqn2961gnvjdft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzwSdT0dkqkjKHqjK7a2Rw95fCgeDkjeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134062353382-ihd0m1jn89mmvb9538lqn2961gnvjdft.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "134062353382-h8rdifnvls49ul3a5nfph1b5oodshmsf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.projectAlgora"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
