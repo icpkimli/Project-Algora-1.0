@@ -6,7 +6,7 @@ import 'package:project_algora_2/custom/my_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function()? onTap;
-  const LoginScreen(this.onTap,{super.key});
+  const LoginScreen(this.onTap, {super.key});
 
   @override
   State<LoginScreen> createState() {
@@ -128,10 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-        MyButton(signUserIn,'Sign In'
-                ),
-
+              MyButton(signUserIn, 'Sign In'),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
