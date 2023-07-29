@@ -36,8 +36,9 @@ class _SignupScreenState extends State<SignupScreen> {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
-      } else
+      } else {
         print("Password doesn't match");
+      }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -79,34 +80,14 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  Future<void> _handleFacebookSignIn(BuildContext context) async {
-    UserCredential? userCredential = await AuthService.signInWithFacebook();
-    if (userCredential != null) {
-      // The user is signed in successfully with Facebook
-      print("Signed in with Facebook: ${userCredential.user?.displayName}");
 
-      // Navigate to the HomeScreen
-      Navigator.pushReplacementNamed(context, '/home');
-    } else {
-      // Sign-in with Facebook was not successful or was cancelled
-      print("Sign-in with Facebook was not successful.");
-
-      // Show an error message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Sign-in with Facebook failed. Please try again.'),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset:
-            false, //this use for prevent the content from resizing
+        false, //this use for prevent the content from resizing
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -184,23 +165,39 @@ class _SignupScreenState extends State<SignupScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
+                    child: OutlinedButton(
                       onPressed: () => _handleGoogleSignIn(context),
-                      icon: Image.asset(
-                        'assets/images/google.png',
-                        width: 60,
-                        height: 60,
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Adjust the border radius as needed
+                        ),
+                        primary: Colors.white, // Set the desired button background color
+                        side: BorderSide(color: Colors.black), // Set the border color
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
-                      onPressed: () => _handleFacebookSignIn(context),
-                      icon: Image.asset(
-                        'assets/images/facebook.png',
-                        width: 60,
-                        height: 60,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(
+                              'assets/images/google.png',
+                              width: 50,
+                              height: 50,
+                            ),
+                          ),
+                          SizedBox(width: 10), // Add spacing between the image and text
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              'Continue With Google',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

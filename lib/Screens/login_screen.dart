@@ -4,6 +4,8 @@ import 'package:project_algora_2/custom/my_button.dart';
 import 'package:project_algora_2/custom/my_text.dart';
 import 'package:project_algora_2/custom/my_text_field.dart';
 
+import '../Back/auth_service.dart';
+
 class LoginScreen extends StatefulWidget {
   final Function()? onTap;
   const LoginScreen(this.onTap, {super.key});
@@ -85,6 +87,27 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+  Future<void> _handleGoogleSignIn(BuildContext context) async {
+    UserCredential? userCredential = await AuthService.signInWithGoogle();
+    if (userCredential != null) {
+      // The user is signed in successfully
+      print("Signed in with Google: ${userCredential.user?.displayName}");
+
+      // Navigate to the HomeScreen
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      // Sign-in was not successful or was cancelled
+      print("Sign-in with Google was not successful.");
+
+      // Show an error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sign-in with Google failed. Please try again.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,33 +179,49 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.grey[200],
-                    ),
-                    child: Image.asset(
-                      'assets/images/google.png',
-                      height: 60,
-                    ),
-                  ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200],
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: OutlinedButton(
+                      onPressed: () => _handleGoogleSignIn(context),
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Adjust the border radius as needed
+                        ),
+                        primary: Colors.white, // Set the desired button background color
+                        side: BorderSide(color: Colors.black), // Set the border color
                       ),
-                      child: Image.asset(
-                        'assets/images/facebook.png',
-                        height: 60,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(
+                              'assets/images/google.png',
+                              width: 50,
+                              height: 50,
+                            ),
+                          ),
+                          SizedBox(width: 10), // Add spacing between the image and text
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              'Continue With Google',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
+
+
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 50),
                 child: Row(

@@ -10,7 +10,7 @@ class AuthService {
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      await googleUser?.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
@@ -27,30 +27,5 @@ class AuthService {
     }
   }
 
-  static Future<UserCredential?> signInWithFacebook() async {
-    try {
-      // Trigger the Facebook authentication flow
-      final LoginResult result = await FacebookAuth.instance.login();
 
-      // Check if the login was successful
-      if (result.status == LoginStatus.success) {
-        // Get the access token from the result
-        final AccessToken accessToken = result.accessToken!;
-
-        // Create a new credential
-        final OAuthCredential credential =
-            FacebookAuthProvider.credential(accessToken.token);
-
-        // Once signed in, return the UserCredential
-        return await FirebaseAuth.instance.signInWithCredential(credential);
-      } else {
-        // If the login was not successful, return null
-        return null;
-      }
-    } catch (e) {
-      // Handle any errors that occur during the sign-in process
-      print("Error signing in with Facebook: $e");
-      return null;
-    }
-  }
 }
