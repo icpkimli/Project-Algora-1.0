@@ -5,6 +5,9 @@ import 'package:project_algora_2/Back/auth_page.dart';
 import 'package:project_algora_2/firebase_options.dart';
 import 'package:device_preview/device_preview.dart';
 
+import 'Screens/choice.dart';
+import 'Screens/loading_screen.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -14,7 +17,7 @@ Future<void> main() async {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => MyApp(),
+      builder: (context) => const MyApp(),
     ),
   );
 }
@@ -28,7 +31,12 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: LoadingScreen(),
     );
   }
 }
+// void main(){
+//   runApp(MaterialApp(
+//     home: Choice()
+//   ));
+// }
