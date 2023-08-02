@@ -1,7 +1,7 @@
 # project_algora_2
 
 Second year group project 
-
+Second year software gruop project
 ## Getting Started
 
 This project is a starting point for a Flutter application.
