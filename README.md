@@ -1,6 +1,6 @@
 # project_algora_2
 
-A new Flutter project.
+Second year group project 
 
 ## Getting Started
 
